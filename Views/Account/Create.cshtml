@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model UserListModel
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Hesap Eklenecek kişi bilgileri
+            </div>
+            <div class="card-body">
+
+                <p>
+                    Hesap Sahibi : @Model.Name @Model.SurName
+                </p>
+                <p>
+                    Kullanıcının Aktif Hesap sayısı : <getAccountCount application-user-id="@Model.Id"></getAccountCount>
+                </p>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Hesap BilgileriBilgileri
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" asp-controller="Account" method="post">
+                    <div class="form-group">
+                        <input type="hidden" name="ApplicationUserId" value="@Model.Id" />
+                        <label for="accountNumber">
+                            Hesap Numarası
+                        </label>
+                        <input type="number" name="AccountNumber" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label formaction="balance">
+                            Bakiye
+                        </label>
+                        <input class="form-control" type="number" step="0.0001" name="Balance" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Hesap Ekle</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

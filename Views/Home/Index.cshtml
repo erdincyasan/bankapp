@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<UserListModel>
+<table class="mt-4 table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                SurName
+            </th>
+            <th>
+                AccountCount
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="GetByUserId" asp-controller="Account" asp-route-userId="@item.Id">@item.Name</a>
+                </td>
+                <td>
+                    @item.SurName
+                </td>
+                <td>
+
+                    <getAccountCount application-user-id='@item.Id'></getAccountCount>
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Create" asp-controller="Account" asp-route-id="@item.Id"> Create Bank Account</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
